@@ -1,0 +1,42 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "website to showcase programming projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack -d --watch",
+    "build": "webpack",
+    "serve": "serve ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielSeehausen/portfolio-website.git"
+  },
+  "keywords": [
+    "portfolio",
+    "projects",
+    "website",
+    "cube"
+  ],
+  "author": "Daniel Seehausen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielSeehausen/portfolio-website/issues"
+  },
+  "homepage": "https://github.com/DanielSeehausen/portfolio-website#readme",
+  "devDependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.15.2",
+    "serve": "^5.1.4",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1"
+  }
+}
