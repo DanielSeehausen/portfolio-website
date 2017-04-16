@@ -3,43 +3,61 @@ import { render } from 'react-dom'
 import Side from './sides/side.component.jsx'
 import { getFaceDataByFaceName, idxToFace } from "../helpers/dataMapper.js"
 import { graphics } from "../helpers/graphics.js"
+import cubeConfig from "../config/cubeConfig.js"
 
 export default class Cube extends Component {
   constructor(props) {
     super(props)
-    //TODO: going to need to decide how to handle active face
-    this.rotate = this.rotate.bind(this)
     this.state = {
+      activeFaceName: "front",
       pos: {
-        xDeg: 0,
-        yDeg: 0
-      }
+        x: 0,
+        y: 0,
+        z: 0
+      },
+      locked: false,
     }
+    this.rotateCube = this.rotateCube.bind(this)
+    this.lock = this.lock.bind(this)
+    this.unlock = this.unlock.bind(this)
+  }
+
+  lock() {
+    console.log("locked")
+    this.setState({ locked: true })
+  }
+
+  unlock() {
+    console.log("unlocked")
+    this.setState({ locked: false })
+    console.log(`NEW CUBE STATE: `, JSON.stringify(this.state))
+
   }
 
   componentDidMount() {
     this.domSelf = document.getElementById(this.props.cubeName)
   }
 
-  rotate() {
-    // stop oscillation FIRST!
-    let direction = ["links", "rechts", "gegenUeber", "oben", "unten"][Math.floor(Math.random() * 5)]
-    let newPos = graphics.rotateCube(this.domSelf, this.state.pos, direction)
-    this.setState({
-      pos: newPos
-    })
+  rotateCube(direction) {
+    if (this.state.locked) return // if we are in an animation, return
+    this.lock()
+    let newState = graphics.rotateCube(this.domSelf, this.state, direction, cubeConfig.rotationDuration)
+    console.log(`NEW CUBE STATE: `, JSON.stringify(newState))
+    this.setState( newState )
+    // having trouble getting a callback on an event listener for animation end so using set timeout
+    setTimeout(() => this.unlock(), cubeConfig.rotationDuration)
   }
 
   render() {
     // temporary sides
-    const sides = [...Array(6)].map((side, idx) => {
+    const sides = [...Array(6)].map((_, idx) => {
       let faceName = idxToFace[idx]
       let faceData = getFaceDataByFaceName(this.props.name, faceName)
-      return <Side key={idx} id={idx} faceName={faceName} faceData={faceData} />
+      return <Side key={idx} sideId={idx} faceName={faceName} faceData={faceData} rotateCube={this.rotateCube} />
     })
     return (
       <div className="container">
-        <div className="cube" id={this.props.cubeName} onClick={this.rotate}>
+        <div className="cube" id={this.props.cubeName} >
           {sides}
         </div>
       </div>

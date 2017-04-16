@@ -9,7 +9,6 @@
 	width: 700px;
 	height: 700px;
 	transform-style: preserve-3d;
-
 }
 
 .spin-cube-cw {
@@ -56,12 +55,12 @@
 }
 .top {
   background-color: green;
-	transform: rotateX(-90deg) translateY(-350px);
+	transform: rotateX(90deg) translateY(-350px);
 	transform-origin: top center;
 }
 .bottom {
   background-color: yellow;
-	transform: rotateX(90deg) translateY(350px);
+	transform: rotateX(-90deg) translateY(350px);
 	transform-origin: bottom center;
 }
 .front {
@@ -95,4 +94,26 @@
 
 .cube-container.vertical .bottom {
 	transform: rotateX(-90deg) translateY(175px);
+}
+
+.cubemover {
+	position: absolute;
+	border: 2px solid white;
+	display: inline-block;
+}
+.cube-mover-oben {
+	top: 0;
+}
+.cube-mover-unten {
+	bottom: 0;
+}
+.cube-mover-links {
+	left: 0;
+}
+.cube-mover-rechts {
+	right: 0;
+}
+.cube-mover-gegenUeber {
+	left: 35%;
+	top: 60%;
 }

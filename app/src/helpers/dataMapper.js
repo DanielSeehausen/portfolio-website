@@ -86,3 +86,7 @@ export function getFaceDataByFaceName(cubeType, cubeFace) {
       return standardFaces[cubeFace]
   }
 }
+
+export function getFaceDataBySideId(cubeType, sideId) {
+  getFaceDataByFaceName(cubeType, idxToFace(sideId))
+}
