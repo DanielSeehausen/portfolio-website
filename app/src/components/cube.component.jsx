@@ -23,15 +23,11 @@ export default class Cube extends Component {
   }
 
   lock() {
-    console.log("locked")
     this.setState({ locked: true })
   }
 
   unlock() {
-    console.log("unlocked")
     this.setState({ locked: false })
-    console.log(`NEW CUBE STATE: `, JSON.stringify(this.state))
-
   }
 
   componentDidMount() {
@@ -42,7 +38,6 @@ export default class Cube extends Component {
     if (this.state.locked) return // if we are in an animation, return
     this.lock()
     let newState = graphics.rotateCube(this.domSelf, this.state, direction, cubeConfig.rotationDuration)
-    console.log(`NEW CUBE STATE: `, JSON.stringify(newState))
     this.setState( newState )
     // having trouble getting a callback on an event listener for animation end so using set timeout
     setTimeout(() => this.unlock(), cubeConfig.rotationDuration)
