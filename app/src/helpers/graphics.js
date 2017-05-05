@@ -97,9 +97,6 @@ function getEndPos(startPos, vector) {
 }
 
 function animateCube(element, startPos, endPos, duration) {
-  // rotate3d(x,y,z,angle)
-  console.log(duration)
-
   element.animate([
     { transform: `rotateX(${startPos.x}deg) rotateY(${startPos.y}deg) rotateZ(${startPos.z}deg)`},
     { transform: `rotateX(${endPos.x}deg) rotateY(${endPos.y}deg) rotateZ(${endPos.z}deg)`}
@@ -110,22 +107,67 @@ function animateCube(element, startPos, endPos, duration) {
   })
 }
 
+// http://stackoverflow.com/questions/34450835/get-3d-css-rotation-value-from-matrix3d-with-javascript
+function matrixToRadians(matrix) {
+    var rotateX = 0,
+        rotateY = 0,
+        rotateZ = 0
+    if (matrix !== 'none') {
+        // do some magic
+        var values = matrix.split('(')[1].split(')')[0].split(','),
+            pi = Math.PI,
+            sinB = parseFloat(values[8]),
+            b = Math.round(Math.asin(sinB) * 180 / pi),
+            cosB = Math.cos(b * pi / 180),
+            matrixVal10 = parseFloat(values[9]),
+            a = Math.round(Math.asin(-matrixVal10 / cosB) * 180 / pi),
+            matrixVal1 = parseFloat(values[0]),
+            c = Math.round(Math.acos(matrixVal1 / cosB) * 180 / pi)
+        rotateX = a
+        rotateY = b
+        rotateZ = c
+    }
+    return {
+        x: rotateX,
+        y: rotateY,
+        z: rotateZ
+    }
+}
+
+function getCurrentRotation(element) {
+  let matrix = window.getComputedStyle(element, null).transform
+  return matrixToRadians(matrix)
+}
+
 export const graphics = {
 
   rotateCube: (element, cubeState, direction, duration) => {
     // ugly randomizer for direction
-    let vector = vectorFromMovementMapper[cubeState.activeFaceName][direction].map((deg) => {
+    const vector = vectorFromMovementMapper[cubeState.activeFaceName][direction].map((deg) => {
       if (deg === 180)
         deg = Math.random() > 0.5 ? 180 : -180
       return deg
     })
-    const endPos = getEndPos(cubeState.pos, vector)
-    console.log(duration)
-    animateCube(element, cubeState.pos, endPos, duration)
+    const startPos = getCurrentRotation(element)
+    const endPos = getEndPos(startPos, vector)
+    animateCube(element, startPos, endPos, duration)
     return {
-      pos: endPos,
       activeFaceName: faceFromDirectionMapper[cubeState.activeFaceName][direction],
     }
   }
+  // rotateCube: (element, cubeState, direction, duration) => {
+  //   // ugly randomizer for direction
+  //   let vector = vectorFromMovementMapper[cubeState.activeFaceName][direction].map((deg) => {
+  //     if (deg === 180)
+  //       deg = Math.random() > 0.5 ? 180 : -180
+  //     return deg
+  //   })
+  //   const endPos = getEndPos(cubeState.pos, vector)
+  //   animateCube(element, cubeState.pos, endPos, duration)
+  //   return {
+  //     pos: endPos,
+  //     activeFaceName: faceFromDirectionMapper[cubeState.activeFaceName][direction],
+  //   }
+  // }
 
 }

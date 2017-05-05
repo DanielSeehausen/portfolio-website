@@ -4,22 +4,20 @@ import Side from './sides/side.component.jsx'
 import { getFaceDataByFaceName, idxToFace } from "../helpers/dataMapper.js"
 import { graphics } from "../helpers/graphics.js"
 import cubeConfig from "../config/cubeConfig.js"
+import { get, set } from "../helpers/keyframesController.js"
 
 export default class Cube extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activeFaceName: "front",
-      pos: {
-        x: 0,
-        y: 0,
-        z: 0
-      },
       locked: false,
     }
     this.rotateCube = this.rotateCube.bind(this)
     this.lock = this.lock.bind(this)
     this.unlock = this.unlock.bind(this)
+    this.resetOscillationRule = null
+    this.oscillateRule = null
   }
 
   lock() {
@@ -28,6 +26,10 @@ export default class Cube extends Component {
 
   unlock() {
     this.setState({ locked: false })
+  }
+
+  componentWillMount() {
+    this.resetOscillationRule
   }
 
   componentDidMount() {

@@ -1,3 +1,8 @@
+body {
+    background-size: 50px 50px;
+    background-image: radial-gradient(circle, #900 1px, rgba(25, 25, 25, 200) 1px);
+}
+
 .container {
 	perspective: 6000px;
 }
@@ -5,10 +10,11 @@
 .cube {
 	position: absolute;
   left: 10%;
-	margin-top: 2%;
+	margin-top: 10%;
 	width: 700px;
 	height: 700px;
 	transform-style: preserve-3d;
+	animation: oscillate 100s cubic-bezier(.1,.0,.9,1) forwards;
 }
 
 .spin-cube-cw {
@@ -66,16 +72,6 @@
 .front {
   background-color: grey;
 	transform: translateZ(350px);
-}
-
-@keyframes spin-cube-cw {
-	from { transform: rotateY(0); }
-	to { transform: rotateY(360deg); }
-}
-
-@keyframes rotate-cube-cw {
-	from { transform: rotateY(0); }
-	to { transform: rotateY(-90deg); }
 }
 
 .cube-container.vertical .cube {

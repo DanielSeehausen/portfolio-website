@@ -1,0 +1,28 @@
+@keyframes spin-cube-cw {
+	from { transform: rotateY(0); }
+	to { transform: rotateY(360deg); }
+}
+
+@keyframes rotate-cube-cw {
+	from { transform: rotateY(0); }
+	to { transform: rotateY(-90deg); }
+}
+
+/*these are dynamically set in the keframesController*/
+@keyframes reset-oscillation {
+  10%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
+}
+
+@keyframes oscillate {
+  1%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
+	10% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
+	20% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
+	30% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(-5deg); }
+	40% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(5deg); }
+	50% { transform: rotateX(5deg) rotateY(5deg) rotateZ(-5deg); }
+	60% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
+	70% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(-5deg); }
+	80% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(5deg); }
+	90% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
+	100% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+}
