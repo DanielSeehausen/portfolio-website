@@ -14,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Cube cubeName="standard" activeFaceIdx={this.state.activeFaceIdx}/>
+        <Cube cubeName="cube" />
       </div>
     )
   }

@@ -1,0 +1,66 @@
+
+@keyframes stop-oscillation {
+	10%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
+}
+
+@keyframes oscillate {
+	1%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
+	10% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
+	20% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
+	30% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(-5deg); }
+	40% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(5deg); }
+	50% { transform: rotateX(5deg) rotateY(5deg) rotateZ(-5deg); }
+	60% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
+	70% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(-5deg); }
+	80% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(5deg); }
+	90% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
+	100% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+}
+
+/*
+Rotations referenced by the direction of the face we are moving
+We have the following cube rotations:
+  x4 up/down/left/right - requiring no re-orientation
+  x4 across - to be used in a random choice for non-re-orienting rotations
+  x8 up/down/left/right clockwise and counterclockwise re-orientation
+  x4 up/down and invert - requires re-orientation to be used with random choice
+  x4 across and invert - to be used in a random choice for re-orienting rotations
+
+FOLLOWING CLASSNAMES DEFINED AS:
+rotate-{relative face direction}-{re-orientation clockwise/counterclockwise/invert}
+*/
+
+.cube.rotate-right { transform: rotateY(-90deg) }
+.cube.rotate-left  { transform: rotateY(90deg) }
+.cube.rotate-up    { transform: rotateX(-90deg) }
+.cube.rotate-down  { transform: rotateX(90deg) }
+
+/*Standard across rotations*/
+.cube.rotate-acrossPosX { transform: rotateX(180deg) }
+.cube.rotate-acrossPosY { transform: rotateY(180deg) }
+.cube.rotate-acrossNegX { transform: rotateX(-180deg) }
+.cube.rotate-acrossNegY { transform: rotateY(-180deg) }
+
+/*Rotations that require re-alignment*/
+.cube.rotate-up-CW { transform: rotateX(-90deg) rotateY(-90deg) }
+.cube.rotate-up-CCW { transform: rotateX(-90deg) rotateY(90deg) }
+
+.cube.rotate-down-CW { transform: rotateX(90deg) rotateY(-90deg) }
+.cube.rotate-down-CCW { transform: rotateX(90deg) rotateY(90deg) }
+
+.cube.rotate-left-CW { transform: rotateX(-90deg) rotateY(90deg) }
+.cube.rotate-left-CCW { transform: rotateX(90deg) rotateY(90deg) }
+
+.cube.rotate-right-CW { transform: rotateX(-90deg) rotateY(-90deg) }
+.cube.rotate-right-CCW { transform: rotateX(90deg) rotateY(-90deg) }
+
+.cube.rotate-down-invertCW { transform: rotateX(90deg) rotateY(180deg) }
+.cube.rotate-down-invertCCW { transform: rotateX(90deg) rotateY(-180deg) }
+.cube.rotate-up-invertCW { transform: rotateX(-90deg) rotateY(180deg) }
+.cube.rotate-up-invertCCW { transform: rotateX(-90deg) rotateY(-180deg) }
+
+ /*Across rotations that require re-alignment rotations*/
+.cube.rotate-acrossPosX-CW { transform: rotateX(180deg) rotateY(180deg) }
+.cube.rotate-acrossPosX-CCW { transform: rotateX(180deg) rotateY(-180deg) }
+.cube.rotate-acrossNegX-CW { transform: rotateX(-180deg) rotateY(180deg) }
+.cube.rotate-acrossNegX-CCW { transform: rotateX(-180deg) rotateY(-180deg) }

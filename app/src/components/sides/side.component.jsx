@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import ExpandedSide from './expanded-sides/expandedSide.component.jsx'
 import CubeMover from '../cubeMover.component.jsx'
+import { destinationMapper } from '../../helpers/destinationMapper.js'
 
 export default class Side extends Component {
   constructor() {
@@ -10,9 +11,8 @@ export default class Side extends Component {
 
   render() {
     const cssClasses = `side ${this.props.faceName}`
-
-    const cubeMovers = ["oben", "unten", "links", "rechts", "gegenUeber"].map((direction, idx) => {
-        return <CubeMover key={idx} direction={direction} onClick={() => this.props.rotateCube(direction)}/>
+    const cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber"].map((destinationName, idx) => {
+        return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.sideIdx][destinationName])}/>
     })
 
     return (

@@ -14,15 +14,9 @@ body {
 	width: 700px;
 	height: 700px;
 	transform-style: preserve-3d;
-	animation: oscillate 100s cubic-bezier(.1,.0,.9,1) forwards;
-}
-
-.spin-cube-cw {
-	animation: spin-cube-cw 35s infinite linear;
-}
-
-.rotate-cube-cw {
-	animation: rotate-cube-cw 1s forwards;
+	/*animation: oscillate 100s cubic-bezier(.1,.0,.9,1) forwards;*/
+  transition-duration: 1s;
+  transform: forwards ease-in-out; /* for the rotations */
 }
 
 .cube div {
@@ -77,7 +71,6 @@ body {
 .cube-container.vertical .cube {
 	margin: 0 auto; /* keeps the cube centered */
 	transform-origin: 0 175px;
-	animation: rotate-cube-y 5s infinite linear;
 }
 
 .cube-container.vertical .top {
