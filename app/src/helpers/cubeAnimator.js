@@ -1,3 +1,6 @@
+import cubeConfig from '../config/cubeConfig.js'
+import rotationMapper from './rotationMapper.js'
+
 /* Cube side indexes are as follows:
  * front: 0
  * right: 1
@@ -16,67 +19,48 @@
 */
 
 var $cube = null
+var vanillaCube = null
+var reactCube = null
 
-function rChoice(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+export function setCube(jQCube, vanillaCube) {
+  $cube = jQCube
+  vanillaCube = vanillaCube
 }
 
-const rotationMapper = {
-  0: {
-    1: 'rotate-right',
-    2: 'rotate-left',
-    3: 'rotate-up',
-    4: 'rotate-down',
-    5: rChoice(["rotate-acrossPosX","rotate-acrossPosY","rotate-acrossNegX","rotate-acrossNegY"]),
-  },
-  1: {
-    0: 'rotate-left',
-    2: rChoice(["rotate-acrossPosX","rotate-acrossPosY","rotate-acrossNegX","rotate-acrossNegY"]),
-    3: 'rotate-up-CCW',
-    4: 'rotate-down-CW',
-    5: 'rotate-right',
-  },
-  2: {
-    1: rChoice(["rotate-acrossPosX","rotate-acrossPosY","rotate-acrossNegX","rotate-acrossNegY"]),
-    0: 'rotate-right',
-    3: 'rotate-up-CW',
-    4: 'rotate-down-CCW',
-    5: 'rotate-left',
-  },
-  3: {
-    1: 'rotate-right-CW',
-    2: 'rotate-right-CCW',
-    0: 'rotate-down',
-    4: rChoice(["rotate-acrossPosX-CW","rotate-acrossPosX-CCW","rotate-acrossNegX-CW","rotate-acrossNegX-CCW"]),
-    5: rChoice(["rotate-up-invertCW", "rotate-up-invertCW"]),
-  },
-  4: {
-    1: 'rotate-right-CCW',
-    2: 'rotate-right-CW',
-    3: rChoice(["rotate-acrossPosX-CW","rotate-acrossPosX-CCW","rotate-acrossNegX-CW","rotate-acrossNegX-CCW"]),
-    0: 'rotate-up',
-    5: rChoice(["rotate-down-invertCW", "rotate-down-invertCCW"]),
-  },
-  5: {
-    1: 'rotate-left',
-    2: 'rotate-right',
-    3: rChoice(["rotate-up-invertCW", "rotate-up-invertCCW"]),
-    4: rChoice(["rotate-down-invertCW", "rotate-down-invertCCW"]),
-    0: rChoice(["rotate-acrossPosX","rotate-acrossPosY","rotate-acrossNegX","rotate-acrossNegY"]),
-  }
+function getEndPos(startPos, vector) {
+  return [
+    startPos[0] + vector[0],
+    startPos[1] + vector[1],
+    startPos[2] + vector[2]
+  ]
 }
 
-export function setCube(cube) {
-  $cube = cube
+function animateRotation(vector) {
+  // this library is incredible: https://github.com/rstacruz/jquery.transit#readme
+  console.log(reactCube)
+  $cube.transition({
+    rotateX: `+=${vector[0]}`,
+    rotateY: `+=${vector[1]}`,
+    rotateZ: `+=${vector[2]}`,
+    duration: 750,
+    easing: 'in-out',
+    complete: () => reactCube.unlock()
+  });
 }
 
-export function rotateCube(startIdx, endIdx) {
-  const cssTransform = rotationMapper[startIdx][endIdx]
-  console.log(startIdx, endIdx, cssTransform)
-  setTimeout(() => {
-    console.log('wot')
-    $cube.removeClass(cssTransform)
-  }, 1500)
-  $cube.addClass(cssTransform)
-
+// TODO: there is a better way to tie the cube with the animator (passing lock/unlock seems sloppy slop)
+// this library is incredible and being used (after trying many different options, this was the best because of how it handles accumulating rotations)
+// https://github.com/rstacruz/jquery.transit#readme
+export function rotateCube(startIdx, endIdx, lockCube, unlockCube) {
+  lockCube()
+  const vector = rotationMapper[startIdx][endIdx]
+  console.log("vect", vector)
+  $cube.transition({
+    rotateX: `+=${vector[0]}`,
+    rotateY: `+=${vector[1]}`,
+    rotateZ: `+=${vector[2]}`,
+    duration: 750,
+    easing: 'in-out',
+    complete: () => unlockCube()
+  });
 }

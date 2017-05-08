@@ -7,6 +7,24 @@ body {
 	perspective: 6000px;
 }
 
+.oscillation-wrapper {
+  left: 10%;
+  margin-top: 10%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-1deg) rotateY(-2deg) rotateZ(-2deg)
+  animation-play-state: running;
+}
+
+.oscillate {
+  animation: oscillate 100s cubic-bezier(.05,.0,.95,1) forwards infinite;
+}
+
+.stop-oscillation {
+  animation: stop-oscillation 10s cubic-bezier(.65,.0,.35,1) forwards;
+}
+
 .cube {
 	position: absolute;
   left: 10%;
@@ -14,10 +32,8 @@ body {
 	width: 700px;
 	height: 700px;
 	transform-style: preserve-3d;
-	/*animation: oscillate 100s cubic-bezier(.1,.0,.9,1) forwards;*/
-  transition-duration: 1s;
-  transform: forwards ease-in-out; /* for the rotations */
 }
+
 
 .cube div {
   border: 1px solid black;

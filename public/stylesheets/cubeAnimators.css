@@ -1,66 +1,58 @@
 
 @keyframes stop-oscillation {
-	10%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
+	100%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
 }
 
 @keyframes oscillate {
-	1%  { transform: rotateX(0) rotateY(0) rotateZ(0); }
-	10% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
-	20% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
-	30% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(-5deg); }
-	40% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(5deg); }
-	50% { transform: rotateX(5deg) rotateY(5deg) rotateZ(-5deg); }
-	60% { transform: rotateX(5deg) rotateY(5deg) rotateZ(5deg); }
-	70% { transform: rotateX(-5deg) rotateY(-5deg) rotateZ(-5deg); }
-	80% { transform: rotateX(5deg) rotateY(-5deg) rotateZ(5deg); }
-	90% { transform: rotateX(-5deg) rotateY(5deg) rotateZ(-5deg); }
-	100% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+	0% { transform: rotateX(-0.5deg) rotateY(-1deg) rotateZ(-2deg); }
+	2.25% { transform: rotateX(0deg) rotateY(-0.75deg) rotateZ(-1.25deg); }
+	5% { transform: rotateX(1deg) rotateY(0.5deg) rotateZ(-.5deg); }
+	7.5% { transform: rotateX(2deg) rotateY(1.75deg) rotateZ(.5deg); }
+
+	10% { transform: rotateX(3deg) rotateY(3deg) rotateZ(1.25deg); }
+	12.5% { transform: rotateX(2.5deg) rotateY(3deg) rotateZ(1.75deg); }
+	15% { transform: rotateX(2deg) rotateY(4deg) rotateZ(2.25deg); }
+	17.5% { transform: rotateX(1deg) rotateY(4.5deg) rotateZ(2.75deg); }
+
+	20% { transform: rotateX(0deg) rotateY(5deg) rotateZ(3.25deg); }
+	23.5% { transform: rotateX(-0.25deg) rotateY(4deg) rotateZ(3.3deg); }
+	25% { transform: rotateX(-0.5deg) rotateY(3.5deg) rotateZ(3.1deg); }
+	27.5% { transform: rotateX(-0.75deg) rotateY(2.75deg) rotateZ(2.65deg); }
+
+	30% { transform: rotateX(-1deg) rotateY(2deg) rotateZ(2.3deg); }
+	32.5% { transform: rotateX(-1.25deg) rotateY(1.5deg) rotateZ(2deg); }
+	35% { transform: rotateX(-1.5deg) rotateY(1deg) rotateZ(1.5deg); }
+	37.5% { transform: rotateX(-1.75deg) rotateY(0.5deg) rotateZ(1deg); }
+
+	40% { transform: rotateX(-2deg) rotateY(0deg) rotateZ(0.75deg); }
+	42.5% { transform: rotateX(-1deg) rotateY(-0.5deg) rotateZ(0.25deg); }
+	45% { transform: rotateX(0deg) rotateY(-1deg) rotateZ(0deg); }
+	47.5% { transform: rotateX(1deg) rotateY(-1.5deg) rotateZ(-0.1deg); }
+
+	50% { transform: rotateX(2deg) rotateY(-1.75deg) rotateZ(-0.15deg); }
+	52.5% { transform: rotateX(2.5deg) rotateY(-2.25deg) rotateZ(-0.5deg); }
+	55% { transform: rotateX(3deg) rotateY(-3deg) rotateZ(-0.65deg); }
+	57.5% { transform: rotateX(3.5deg) rotateY(-3.5deg) rotateZ(-0.85deg); }
+
+	60% { transform: rotateX(4deg) rotateY(-4deg) rotateZ(-1deg); }
+	62.5% { transform: rotateX(4.25deg) rotateY(-3.5deg) rotateZ(-1.25deg); }
+	65% { transform: rotateX(4.5deg) rotateY(-3deg) rotateZ(-1deg); }
+	67.5% { transform: rotateX(4.75deg) rotateY(-2.25deg) rotateZ(-0.75deg); }
+
+	70% { transform: rotateX(5deg) rotateY(-1.75deg) rotateZ(-0.25deg); }
+	72.5% { transform: rotateX(5.25deg) rotateY(-1deg) rotateZ(0deg); }
+	75% { transform: rotateX(5.5deg) rotateY(-0.25deg) rotateZ(0.3deg); }
+	77.5% { transform: rotateX(5.6deg) rotateY(0.25deg) rotateZ(0.6deg); }
+
+	80% { transform: rotateX(5.35deg) rotateY(1deg) rotateZ(0.5deg); }
+	82.5% { transform: rotateX(4.85deg) rotateY(1.75deg) rotateZ(0.15deg); }
+	85% { transform: rotateX(4.15deg) rotateY(1.25deg) rotateZ(0deg); }
+	87.5% { transform: rotateX(3.75deg) rotateY(0.75deg) rotateZ(-0.25deg); }
+
+	90% { transform: rotateX(2.95deg) rotateY(0deg) rotateZ(-0.65deg); }
+	92.5% { transform: rotateX(2.25deg) rotateY(0deg) rotateZ(-1deg); }
+	95% { transform: rotateX(1.25deg) rotateY(-1deg) rotateZ(-1.5deg); }
+	97.5% { transform: rotateX(0.5deg) rotateY(-1deg) rotateZ(-1.5deg); }
+
+	100% { transform: rotateX(-0.5deg) rotateY(-1deg) rotateZ(-2deg); }
 }
-
-/*
-Rotations referenced by the direction of the face we are moving
-We have the following cube rotations:
-  x4 up/down/left/right - requiring no re-orientation
-  x4 across - to be used in a random choice for non-re-orienting rotations
-  x8 up/down/left/right clockwise and counterclockwise re-orientation
-  x4 up/down and invert - requires re-orientation to be used with random choice
-  x4 across and invert - to be used in a random choice for re-orienting rotations
-
-FOLLOWING CLASSNAMES DEFINED AS:
-rotate-{relative face direction}-{re-orientation clockwise/counterclockwise/invert}
-*/
-
-.cube.rotate-right { transform: rotateY(-90deg) }
-.cube.rotate-left  { transform: rotateY(90deg) }
-.cube.rotate-up    { transform: rotateX(-90deg) }
-.cube.rotate-down  { transform: rotateX(90deg) }
-
-/*Standard across rotations*/
-.cube.rotate-acrossPosX { transform: rotateX(180deg) }
-.cube.rotate-acrossPosY { transform: rotateY(180deg) }
-.cube.rotate-acrossNegX { transform: rotateX(-180deg) }
-.cube.rotate-acrossNegY { transform: rotateY(-180deg) }
-
-/*Rotations that require re-alignment*/
-.cube.rotate-up-CW { transform: rotateX(-90deg) rotateY(-90deg) }
-.cube.rotate-up-CCW { transform: rotateX(-90deg) rotateY(90deg) }
-
-.cube.rotate-down-CW { transform: rotateX(90deg) rotateY(-90deg) }
-.cube.rotate-down-CCW { transform: rotateX(90deg) rotateY(90deg) }
-
-.cube.rotate-left-CW { transform: rotateX(-90deg) rotateY(90deg) }
-.cube.rotate-left-CCW { transform: rotateX(90deg) rotateY(90deg) }
-
-.cube.rotate-right-CW { transform: rotateX(-90deg) rotateY(-90deg) }
-.cube.rotate-right-CCW { transform: rotateX(90deg) rotateY(-90deg) }
-
-.cube.rotate-down-invertCW { transform: rotateX(90deg) rotateY(180deg) }
-.cube.rotate-down-invertCCW { transform: rotateX(90deg) rotateY(-180deg) }
-.cube.rotate-up-invertCW { transform: rotateX(-90deg) rotateY(180deg) }
-.cube.rotate-up-invertCCW { transform: rotateX(-90deg) rotateY(-180deg) }
-
- /*Across rotations that require re-alignment rotations*/
-.cube.rotate-acrossPosX-CW { transform: rotateX(180deg) rotateY(180deg) }
-.cube.rotate-acrossPosX-CCW { transform: rotateX(180deg) rotateY(-180deg) }
-.cube.rotate-acrossNegX-CW { transform: rotateX(-180deg) rotateY(180deg) }
-.cube.rotate-acrossNegX-CCW { transform: rotateX(-180deg) rotateY(-180deg) }

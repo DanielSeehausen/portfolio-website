@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import ExpandedSide from './expanded-sides/expandedSide.component.jsx'
 import CubeMover from '../cubeMover.component.jsx'
-import { destinationMapper } from '../../helpers/destinationMapper.js'
+import destinationMapper from '../../helpers/destinationMapper.js'
 
 export default class Side extends Component {
   constructor() {

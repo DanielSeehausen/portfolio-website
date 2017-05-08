@@ -15,31 +15,32 @@ export default class Cube extends Component {
     this.lock = this.lock.bind(this)
     this.unlock = this.unlock.bind(this)
     this.$self = null
+    this.domSelf = null
   }
 
   lock() {
+    console.log('locking')
+
     this.setState({ locked: true })
   }
 
   unlock() {
+    console.log('unlocking')
     this.setState({ locked: false })
   }
 
-  componentWillMount() {
-  }
-
-  componentDidMount() {3
+  //todo: would be better to associate the controller with the object than pass all the references
+  componentDidMount() {
     this.$self = $(`#${this.props.cubeName}`)
-    setCube(this.$self)
+    this.domSelf = document.getElementById(this.props.cubeName)
+    setCube(this.$self, this.domSelf)
   }
 
   rotateCube(destinationIdx) {
     if (this.state.locked) return // if we are in an animation don't start another
-    this.lock()
     console.log(`rotating: ${this.state.activeFaceIdx} -> ${destinationIdx}`)
-    rotateCube(this.state.activeFaceIdx, destinationIdx)
+    rotateCube(this.state.activeFaceIdx, destinationIdx, this.lock, this.unlock)
     this.setState({ activeFaceIdx: destinationIdx })
-    this.unlock()
   }
 
   render() {
@@ -51,8 +52,10 @@ export default class Cube extends Component {
     })
     return (
       <div className="container">
-        <div className="cube" id={this.props.cubeName} >
-          {sides}
+        <div className="oscillation-wrapper oscillate">
+          <div className="cube" id={this.props.cubeName} >
+            {sides}
+          </div>
         </div>
       </div>
     )
