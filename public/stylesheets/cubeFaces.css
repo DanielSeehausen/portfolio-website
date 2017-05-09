@@ -1,0 +1,57 @@
+.face {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.face div {
+  margin: 0;
+  flex-grow: 1;
+}
+
+#front-side {
+  background-color: grey;
+  transform: translateZ(350px);
+}
+#front-face {
+}
+
+#right-side {
+  background-color: purple;
+	transform: rotateY(-270deg) translateX(350px);
+	transform-origin: top right;
+}
+#right-face {
+}
+
+#left-side {
+  background-color: blue;
+	transform: rotateY(270deg) translateX(-350px);
+	transform-origin: center left;
+}
+#left-face {
+}
+
+#top-side {
+  background-color: green;
+	transform: rotateX(90deg) translateY(-350px);
+	transform-origin: top center;
+}
+#top-face {
+}
+
+#bottom-side {
+  background-color: yellow;
+	transform: rotateX(-90deg) translateY(350px);
+	transform-origin: bottom center;
+}
+#bottom-face {
+}
+
+#back-side {
+  background-color: red;
+  transform: translateZ(-350px) rotateY(180deg);
+}
+#back-face {
+}

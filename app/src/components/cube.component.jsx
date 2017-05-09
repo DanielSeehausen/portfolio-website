@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import Side from './sides/side.component.jsx'
-import { getFaceDataByFaceName, idxToFace } from "../helpers/dataMapper.js"
+import { getFaceData, idxToFace } from "../helpers/faceDataMapper.js"
 import { setCube, rotateCube } from "../helpers/cubeAnimator.js"
 
 export default class Cube extends Component {
@@ -19,12 +19,10 @@ export default class Cube extends Component {
   }
 
   lock() {
-    console.log('locking')
     this.setState({ locked: true })
   }
 
   unlock() {
-    console.log('unlocking')
     this.setState({ locked: false })
   }
 
@@ -36,7 +34,6 @@ export default class Cube extends Component {
   }
 
   rotateCube(destinationIdx) {
-    console.log('s')
     if (this.state.locked) return // if we are in an animation don't start another
     console.log(`rotating: ${this.state.activeFaceIdx} -> ${destinationIdx}`)
     rotateCube(this.state.activeFaceIdx, destinationIdx, this.lock, this.unlock)
@@ -45,10 +42,9 @@ export default class Cube extends Component {
 
   render() {
     // temporary sides
-    const sides = [...Array(6)].map((_, idx) => {
-      let faceName = idxToFace[idx]
-      let faceData = getFaceDataByFaceName(this.props.name, faceName)
-      return <Side key={idx} sideIdx={idx} faceName={faceName} faceData={faceData} rotateCube={this.rotateCube} />
+    const sides = [...Array(6)].map((_, sideIdx) => {
+      let faceData = getFaceData(sideIdx)
+      return <Side key={idxToFace[sideIdx]} sideIdx={sideIdx} faceData={faceData} rotateCube={this.rotateCube} />
     })
     return (
       <div className="cube-container">

@@ -10,7 +10,6 @@ body {
 #container {
   height: 100vh;
   width: 100vw;
-	perspective: 6000px;
   margin: 0;
   padding: 0;
   min-width: 750px;
@@ -18,6 +17,7 @@ body {
 }
 
 .cube-container {
+  perspective: 10000px;
   position: fixed;
   height: 700px;
   width: 700px;
@@ -33,7 +33,7 @@ body {
 }
 
 .oscillate {
-  animation: oscillate 100s cubic-bezier(.05,.0,.95,1) forwards infinite;
+  animation: oscillate 20s cubic-bezier(.05,.0,.95,1) forwards infinite;
 }
 
 .stop-oscillation {
@@ -53,48 +53,6 @@ body {
 	position: absolute;
 	width: 700px;
 	height: 700px;
-}
-
-.face {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.face div {
-  margin: 0;
-  flex-grow: 1;
-}
-
-.back {
-  background-color: red;
-	transform: translateZ(-350px) rotateY(180deg);
-}
-.right {
-  background-color: purple;
-	transform: rotateY(-270deg) translateX(350px);
-	transform-origin: top right;
-}
-.left {
-  background-color: blue;
-	transform: rotateY(270deg) translateX(-350px);
-	transform-origin: center left;
-}
-.top {
-  background-color: green;
-	transform: rotateX(90deg) translateY(-350px);
-	transform-origin: top center;
-}
-.bottom {
-  background-color: yellow;
-	transform: rotateX(-90deg) translateY(350px);
-	transform-origin: bottom center;
-}
-
-.front {
-  background-color: grey;
-	transform: translateZ(350px);
 }
 
 .cube-container.vertical .top {

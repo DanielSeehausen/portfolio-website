@@ -14,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Cube cubeName="cube" />
+        <Cube cubeName="home-cube" />
       </div>
     )
   }
