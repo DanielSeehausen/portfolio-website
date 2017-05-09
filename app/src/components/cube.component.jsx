@@ -20,7 +20,6 @@ export default class Cube extends Component {
 
   lock() {
     console.log('locking')
-
     this.setState({ locked: true })
   }
 
@@ -37,6 +36,7 @@ export default class Cube extends Component {
   }
 
   rotateCube(destinationIdx) {
+    console.log('s')
     if (this.state.locked) return // if we are in an animation don't start another
     console.log(`rotating: ${this.state.activeFaceIdx} -> ${destinationIdx}`)
     rotateCube(this.state.activeFaceIdx, destinationIdx, this.lock, this.unlock)
@@ -51,7 +51,7 @@ export default class Cube extends Component {
       return <Side key={idx} sideIdx={idx} faceName={faceName} faceData={faceData} rotateCube={this.rotateCube} />
     })
     return (
-      <div className="container">
+      <div className="cube-container">
         <div className="oscillation-wrapper oscillate">
           <div className="cube" id={this.props.cubeName} >
             {sides}

@@ -1,20 +1,35 @@
+html {
+  height: 100%;
+}
 body {
+    min-height: 100%;
     background-size: 50px 50px;
     background-image: radial-gradient(circle, #900 1px, rgba(25, 25, 25, 200) 1px);
 }
 
-.container {
+#container {
+  height: 100vh;
+  width: 100vw;
 	perspective: 6000px;
+  margin: 0;
+  padding: 0;
+  min-width: 750px;
+  min-height: 750px;
+}
+
+.cube-container {
+  position: fixed;
+  height: 700px;
+  width: 700px;
+  top: 50%;
+  left: 50%;
+  margin-top: -350px;
+  margin-left: -350px;
 }
 
 .oscillation-wrapper {
-  left: 10%;
-  margin-top: 10%;
-  width: 0;
-  height: 0;
+  margin: 0;
   transform-style: preserve-3d;
-  transform: rotateX(-1deg) rotateY(-2deg) rotateZ(-2deg)
-  animation-play-state: running;
 }
 
 .oscillate {
@@ -26,9 +41,7 @@ body {
 }
 
 .cube {
-	position: absolute;
-  left: 10%;
-	margin-top: 10%;
+	position: fixed;
 	width: 700px;
 	height: 700px;
 	transform-style: preserve-3d;
@@ -52,7 +65,6 @@ body {
 .face div {
   margin: 0;
   flex-grow: 1;
-
 }
 
 .back {
@@ -79,14 +91,10 @@ body {
 	transform: rotateX(-90deg) translateY(350px);
 	transform-origin: bottom center;
 }
+
 .front {
   background-color: grey;
 	transform: translateZ(350px);
-}
-
-.cube-container.vertical .cube {
-	margin: 0 auto; /* keeps the cube centered */
-	transform-origin: 0 175px;
 }
 
 .cube-container.vertical .top {
