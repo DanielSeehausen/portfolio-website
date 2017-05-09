@@ -42,9 +42,9 @@ export default class Cube extends Component {
 
   render() {
     // temporary sides
-    const sides = [...Array(6)].map((_, sideIdx) => {
-      let faceData = getFaceData(sideIdx)
-      return <Side key={idxToFace[sideIdx]} sideIdx={sideIdx} faceData={faceData} rotateCube={this.rotateCube} />
+    const sides = [...Array(6)].map((_, faceIdx) => {
+      let faceData = getFaceData(faceIdx)
+      return <Side key={idxToFace[faceIdx]} faceIdx={faceIdx} faceData={faceData} rotateCube={this.rotateCube} />
     })
     return (
       <div className="cube-container">

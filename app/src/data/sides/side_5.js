@@ -1,14 +1,24 @@
-const sideData = {
+const faceData = {
   sideType: 'standard',
-  title: '',
-  shortScrip: '',
-  longScrip: '',
-  media: {
-    imgPaths: [],
-    videoPath: '',
-    soundPaths: [],
-  },
+  title: 'Home (Title)',
+  shortScrip: 'Home (ShortScrip)',
+  longScrip: 'Home (LongScrips)',
   linkUrls: '',
+  media: {
+    imgs: [],
+    videos: '',
+    sounds: [],
+  },
+  style: {
+    sideCSS: {
+      backgroundImage: "url(sample-media/ruby_kitty.jpg)",
+      borderColor: '#FF7711',
+      backgroundColor: 'orange',
+    },
+    faceCSS: {
+      borderColor: '#FF7711',
+    }
+  }
 }
 
-export default sideData
+export default faceData

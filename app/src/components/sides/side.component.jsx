@@ -11,13 +11,14 @@ export default class Side extends Component {
 
   render() {
     const cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber"].map((destinationName, idx) => {
-        return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.sideIdx][destinationName])}/>
+        return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.faceIdx][destinationName])}/>
     })
-    const faceName = idxToFace[this.props.sideIdx]
-
+    const faceName = idxToFace[this.props.faceIdx]
+    var {faceCSS, sideCSS} = this.props.faceData.style
+    console.log(sideCSS)
     return (
-      <div id={`${faceName}-side`} className="side">
-        <div id={`${faceName}-face`} className="face">
+      <div id={`${faceName}-side`} className="side" style={sideCSS}>
+        <div id={`${faceName}-face`} className="face" style={faceCSS}>
           {cubeMovers}
         </div>
       </div>

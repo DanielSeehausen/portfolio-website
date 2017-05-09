@@ -10,15 +10,18 @@
   flex-grow: 1;
 }
 
+.side {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 #front-side {
-  background-color: grey;
   transform: translateZ(350px);
 }
 #front-face {
 }
 
 #right-side {
-  background-color: purple;
 	transform: rotateY(-270deg) translateX(350px);
 	transform-origin: top right;
 }
@@ -26,7 +29,6 @@
 }
 
 #left-side {
-  background-color: blue;
 	transform: rotateY(270deg) translateX(-350px);
 	transform-origin: center left;
 }
@@ -34,7 +36,6 @@
 }
 
 #top-side {
-  background-color: green;
 	transform: rotateX(90deg) translateY(-350px);
 	transform-origin: top center;
 }
@@ -42,7 +43,6 @@
 }
 
 #bottom-side {
-  background-color: yellow;
 	transform: rotateX(-90deg) translateY(350px);
 	transform-origin: bottom center;
 }
@@ -50,7 +50,6 @@
 }
 
 #back-side {
-  background-color: red;
   transform: translateZ(-350px) rotateY(180deg);
 }
 #back-face {
