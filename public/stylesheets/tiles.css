@@ -1,0 +1,13 @@
+.tile {
+  border: 2px solid white;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  margin-top: -125px;
+  margin-left: -125px;
+  z-index: -5;
+}

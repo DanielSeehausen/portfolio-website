@@ -5,8 +5,8 @@ import side3 from '../data/sides/side_3.js'
 import side4 from '../data/sides/side_4.js'
 import side5 from '../data/sides/side_5.js'
 
-export const idxToFace = {
-  // returns the INITIAL face orientation (i.e. faceIdx 0 facing user)
+export const idxToSide = {
+  // returns the INITIAL side orientation (i.e. sideIdx 0 facing user)
   0: 'front',
   1: 'right',
   2: 'left',
@@ -15,8 +15,8 @@ export const idxToFace = {
   5: 'back'
 }
 
-export const getFaceData = (idx) => {
-  // could use object instead like in idxToFace
+export const getSideData = (idx) => {
+  // could use object instead like in idxToSide
   // other option is to use eval() and fetch from a dynamic variable name, but I hear it is knotty naughty
   switch (idx) {
     case 0:
@@ -41,7 +41,7 @@ export const getFaceData = (idx) => {
       return side6
       break
     default:
-      console.error(`Face w/ idx: ${idx} not found! Serving face 0 data...`)
+      console.error(`Face w/ idx: ${idx} not found! Serving side 0 data...`)
       return side0
       break
   }

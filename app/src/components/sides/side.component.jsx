@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import CubeMover from '../cubeMover.component.jsx'
+import AnimatorButton from '../animatorButton.component.jsx'
 import destinationMapper from '../../helpers/destinationMapper.js'
-import { idxToFace } from '../../helpers/faceDataMapper.js'
+import { idxToSide } from '../../helpers/sideDataMapper.js'
 
 export default class Side extends Component {
   constructor() {
@@ -10,15 +11,18 @@ export default class Side extends Component {
   }
 
   render() {
-    const cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber"].map((destinationName, idx) => {
-        return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.faceIdx][destinationName])}/>
-    })
-    const faceName = idxToFace[this.props.faceIdx]
-    var {faceCSS, sideCSS} = this.props.faceData.style
-    console.log(sideCSS)
+    if (this.props.active) {
+      var cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber"].map((destinationName, idx) => {
+        return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.sideIdx][destinationName])}/>
+      })
+      var animator = (this.props.animator) ? <AnimatorButton onClick={this.props.animator}/> : null
+    }
+    const sideName = idxToSide[this.props.sideIdx]
+    const {faceCSS, sideCSS} = this.props.sideData.style
     return (
-      <div id={`${faceName}-side`} className="side" style={sideCSS}>
-        <div id={`${faceName}-face`} className="face" style={faceCSS}>
+      <div id={`${sideName}-side`} className="side" style={sideCSS}>
+        <div id={`${sideName}-face`} className="face" style={faceCSS}>
+          {animator}
           {cubeMovers}
         </div>
       </div>

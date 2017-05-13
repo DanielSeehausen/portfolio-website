@@ -4,6 +4,7 @@ const faceData = {
   shortScrip: 'Home (ShortScrip)',
   longScrip: 'Home (LongScrips)',
   linkUrls: '',
+  animator: 'fold',
   media: {
     imgs: [],
     videos: '',

@@ -1,10 +1,7 @@
 TODO:
-  - remove multiple cube naming convention and use (i.e. 'standard' in cube component) No need with Devin's portfolio tile effect
-
+  - add wasd to cube moverss
   - pre-compile stylesheets
-
   - Make slight alterations to oscillation values (speed it up to see where its shitty)
-  - Swap naming convention on sides and faces?
   - Find clever way to reset cube position (re: oscillation) when project tiles unfolded
 
 Notes:

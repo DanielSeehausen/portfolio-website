@@ -16,15 +16,14 @@ body {
   min-height: 750px;
 }
 
-.cube-container {
-  perspective: 10000px;
+#guide-me {
   position: fixed;
-  height: 700px;
-  width: 700px;
-  top: 50%;
-  left: 50%;
-  margin-top: -350px;
-  margin-left: -350px;
+  top: 10px;
+  left: 10px;
+  color: #DDDDDD;
+  font-size: 20pt;
+  opacity: .8;
+  transition: opacity 1s ease-out;
 }
 
 .oscillation-wrapper {
@@ -36,8 +35,15 @@ body {
   animation: oscillate 20s cubic-bezier(.05,.0,.95,1) forwards infinite;
 }
 
-.stop-oscillation {
-  animation: stop-oscillation 10s cubic-bezier(.65,.0,.35,1) forwards;
+.cube-container {
+  perspective: 10000px;
+  position: fixed;
+  height: 700px;
+  width: 700px;
+  top: 50%;
+  left: 50%;
+  margin-top: -350px;
+  margin-left: -350px;
 }
 
 .cube {
@@ -47,9 +53,7 @@ body {
 	transform-style: preserve-3d;
 }
 
-
 .cube div {
-  border: 1px solid black;
 	position: absolute;
 	width: 700px;
 	height: 700px;
@@ -69,22 +73,39 @@ body {
 
 .cubemover {
 	position: absolute;
-	border: 2px solid white;
 	display: inline-block;
+  margin: 0;
 }
-.cube-mover-oben {
-	top: 0;
-}
-.cube-mover-unten {
-	bottom: 0;
+
+.cube-mover-rechts {
+  width: 400px;
+  height: 500px;
+  right: -300px;
 }
 .cube-mover-links {
-	left: 0;
+  width: 400px;
+  height: 500px;
+  left: -300px;
 }
-.cube-mover-rechts {
-	right: 0;
+.cube-mover-oben {
+  width: 500px;
+  height: 400px;
+  top: -300px;
+}
+.cube-mover-unten {
+  width: 500px;
+  height: 400px;
+  bottom: -300px;
 }
 .cube-mover-gegenUeber {
 	left: 35%;
 	top: 60%;
+}
+
+.animator-button {
+  position: absolute;
+  border: 10px solid white;
+  height: 100px;
+  width: 100px;
+
 }
