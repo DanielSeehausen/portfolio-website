@@ -12,7 +12,7 @@ export default class Side extends Component {
 
   render() {
     if (this.props.active) {
-      var cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber"].map((destinationName, idx) => {
+      var cubeMovers = ["rechts", "links", "unten", "oben", "gegenUeber1", "gegenUeber2", "gegenUeber3", "gegenUeber4"].map((destinationName, idx) => {
         return <CubeMover key={idx} destinationName={destinationName} onClick={() => this.props.rotateCube(destinationMapper[this.props.sideIdx][destinationName])}/>
       })
       var animator = (this.props.animator) ? <AnimatorButton onClick={this.props.animator}/> : null

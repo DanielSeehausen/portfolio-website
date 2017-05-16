@@ -32,7 +32,7 @@ body {
 }
 
 .oscillate {
-  animation: oscillate 20s cubic-bezier(.05,.0,.95,1) forwards infinite;
+  animation: oscillate 40s cubic-bezier(.2,0,.8,1) forwards infinite;
 }
 
 .cube-container {
@@ -75,6 +75,7 @@ body {
 	position: absolute;
 	display: inline-block;
   margin: 0;
+  border: 2px solid white;
 }
 
 .cube-mover-rechts {
@@ -97,9 +98,29 @@ body {
   height: 400px;
   bottom: -300px;
 }
-.cube-mover-gegenUeber {
-	left: 35%;
-	top: 60%;
+.cube-mover-gegenUeber1 {
+  width: 400px;
+  height: 400px;
+  top: -300px;
+  right: -300px;
+}
+.cube-mover-gegenUeber2 {
+  width: 400px;
+  height: 400px;
+  bottom: -300px;
+  right: -300px;
+}
+.cube-mover-gegenUeber3 {
+  width: 400px;
+  height: 400px;
+  bottom: -300px;
+  left: -300px;
+}
+.cube-mover-gegenUeber4 {
+  width: 400px;
+  height: 400px;
+  top: -300px;
+  left: -300px;
 }
 
 .animator-button {

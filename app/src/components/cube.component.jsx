@@ -27,7 +27,8 @@ export default class Cube extends Component {
   rotateCube(destinationIdx) {
     console.log(`rotating: ${this.state.activeSideIdx} -> ${destinationIdx}`)
     rotateCube(this.state.activeSideIdx, destinationIdx)
-    this.setState({ activeSideIdx: destinationIdx })
+    // the diagonal rotations are strings (i.e. '5a') while the others are ints. this lets us use either
+    this.setState({ activeSideIdx: destinationIdx[0]/1 || destinationIdx })
   }
 
   cubeFolder() {
